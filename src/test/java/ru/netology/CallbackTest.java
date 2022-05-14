@@ -1,5 +1,6 @@
 package ru.netology;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,6 +23,7 @@ class CallbackTest {
     @BeforeAll      //будет запускаться перед всеми тестами
     static void setUpAll() {
         System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");     //"название драйвера", "путь до драйвера из папки driver"
+        WebDriverManager.chromedriver().setup();
     }
 
     //метод создания поля для WebDriver
