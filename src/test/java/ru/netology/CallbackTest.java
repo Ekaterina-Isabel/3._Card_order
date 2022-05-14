@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CallbackTest {
     private WebDriver driver;       //создание сущности драйвер
+    private ChromeOptions options = new ChromeOptions();
 
     //метод, в котором прописан путь до драйвера
     @BeforeAll      //будет запускаться перед всеми тестами
@@ -23,10 +25,12 @@ class CallbackTest {
     }
 
     //метод создания поля для WebDriver
-    @BeforeEach
-    //будет запускаться перед каждым тестом
+    @BeforeEach     //будет запускаться перед каждым тестом
     void setUp() {
-        driver = new ChromeDriver();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     //метод закрытия всех окон браузера
